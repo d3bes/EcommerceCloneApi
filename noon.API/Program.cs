@@ -32,6 +32,11 @@ using noon.Application.Services.OrderServices;
 using noon.Domain.Contract;
 using noon.Domain.Models.Order;
 using System.Text.Json.Serialization;
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 #endregion
 
@@ -68,9 +73,9 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfiles()));
 builder.Services.AddDbContext<noonContext>(op =>
 
 {
-     op.UseSqlServer(builder.Configuration.GetConnectionString("Cs"));
+    // op.UseSqlServer(builder.Configuration.GetConnectionString("Cs"));
     //op.UseLazyLoadingProxies()
-          // op.UseNpgsql(builder.Configuration.GetConnectionString("postgresql"));
+           op.UseNpgsql(builder.Configuration.GetConnectionString("postgresql"));
 });
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
@@ -147,9 +152,8 @@ builder.Services.AddAuthentication(/*JwtBearerDefaults.AuthenticationScheme*/
 ////
 /// add Hangfire
 ////
-//builder.Services.AddHangfire(x => x.UsePostgreSqlStorage(ConnectionString));
-//builder.Services.AddHangfire(x => x.UseSqlServerStorage(ConnectionString));
- builder.Services.AddHangfire(x => x.UseSqlServerStorage(ConnectionString));
+ builder.Services.AddHangfire(x => x.UsePostgreSqlStorage(ConnectionString));
+//  builder.Services.AddHangfire(x => x.UseSqlServerStorage(ConnectionString));
 
 /// start Hangfire servise
 ////
@@ -227,7 +231,7 @@ app.UseAuthorization();
 /// 
  //app.UseHangfireDashboard("/dashboard");
 ///
- app.UseHangfireDashboard("/dashboard");
+//  app.UseHangfireDashboard("/dashboard");
 
 app.MapControllers();
 

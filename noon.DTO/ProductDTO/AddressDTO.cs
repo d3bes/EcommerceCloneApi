@@ -11,12 +11,16 @@ namespace noon.DTO.ProductDTO
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string fullAddress { get; set; }
+
+        public string Region { get; set; }
+        public string Governorate { get; set; }
+        public string City { get; set; }
+        public string street { get; set; }
+        public string building { get; set; }
+        public string near { get; set; }
+        public string lat { get; set; }
+        public string lng { get; set; }
         public string phoneNumber { get; set; }
-        public enum addressLabel
-        {
-            work,
-            home
-        }
+        public bool isHome { get; set; }
     }
 }

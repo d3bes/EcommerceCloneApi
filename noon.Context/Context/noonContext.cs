@@ -30,12 +30,25 @@ namespace noon.Context.Context
             //  ChangeTracker.ConcurrencyTokenInterceptor = new ConcurrencyTokenInterceptor();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-           optionsBuilder.UseSqlServer("Data Source=SQL5106.site4now.net;Initial Catalog=db_a9b12e_ecommerce;User Id=db_a9b12e_ecommerce_admin;Password=NoonEcommerce10; MultipleActiveResultSets=True;");
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //   optionsBuilder.UseSqlServer("Data Source=SQL5106.site4now.net;Initial Catalog=db_a9b12e_ecommerce;User Id=db_a9b12e_ecommerce_admin;Password=NoonEcommerce10; MultipleActiveResultSets=True;");
 
-            base.OnConfiguring(optionsBuilder);
+        //    base.OnConfiguring(optionsBuilder);
+        //}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WishList>()
+                .HasOne(b => b.AppUser)
+                .WithMany(a => a.wishLists)
+                .HasForeignKey(b => b.userId);
+
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+                
+               
         }
+
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategorys { get; set; }

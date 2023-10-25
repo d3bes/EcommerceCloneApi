@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using noon.DTO.Mail;
 using Hangfire;
+using System.IO;
 
 namespace noon.API.Controllers
 {
@@ -23,7 +24,7 @@ namespace noon.API.Controllers
         [HttpPost("sendmail")]
         public async Task<IActionResult> SendMail([FromForm] MailRequestDto mailRequestDTO)
         {
-
+            var parent = Directory.GetParent(Directory.GetCurrentDirectory());
              var filePath = $"{Directory.GetCurrentDirectory()}//Templetes//EmailVertificationTemplate.html";
             var str = new StreamReader(filePath);
 

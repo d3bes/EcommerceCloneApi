@@ -17,8 +17,8 @@ namespace noon.Domain.Models.Identity
         public virtual List<Order.Order>? Orders { set; get; }
         public virtual List<UserPaymentMethod>? paymentMethods { set; get; }
         public List<Product>? products { get; set; }
-        [ForeignKey("wishList")]
-        public int? wishListId { get; set; }
-        public WishList? wishList { get; set; }
+       // [ForeignKey("wishList")]
+      //  public int? wishListId { get; set; }
+        public List<WishList>? wishLists { get; set; }
     }
 }

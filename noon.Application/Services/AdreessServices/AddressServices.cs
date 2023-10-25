@@ -25,10 +25,21 @@ namespace noon.Application.Services.AdreessServices
         {
             // var model = mapper.Map<Address>(address);
             var model = new Address(){
+                Id = address.Id,
                 FirstName= address.FirstName,
                 LastName= address.LastName,
+                Region = address.Region,
+                City = address.City,
+                Governorate = address.Governorate,
+                street = address.street,
+                building = address.building,
+                near = address.near,
+                lat = address.lat,
+                lng = address.lng,
+                isHome = address.isHome,
                 phoneNumber= address.phoneNumber,
-                fullAddress= address.fullAddress
+
+                
             };
             await addressRepository.CreateAsync(model);
             return  address;
